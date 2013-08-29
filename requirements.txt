@@ -1,0 +1,10 @@
+# This file is here because many Platforms as a Service look for
+# requirements.txt in the root directory of a project.
+
+# By default this settings file is pointing at the requirements
+# file for local environments. To install testing/production
+# requirements either pip install the appropriate file in
+# /requirements/ directly or change the line below to point
+# to the desired file.
+
+-r requirements/local.txt
