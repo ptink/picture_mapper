@@ -1,0 +1,3 @@
+django-registration activation email subject-line template
+
+Registered for {{ site }}, activation valid for {{ expiration_days }} days!
