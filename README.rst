@@ -20,17 +20,18 @@ To Install Picture Mapper
 
 1. Clone the repo
 2. Create a virtual environment (http://www.virtualenv.org).
-3. Install dependencies:- $ pip install -r requirements.txt
-    i. The /requirements/ folder contains requirements.txt files for different environments (local, production etc).
-    ii. By default, requirements.txt points to local.txt, the requirements for local environments.
-    iii. To install requirements for a different environment -
-        a. Use pip install on that specific file e.g. $ pip install -r production.txt
-        b. Modify requirements.txt to point to the desired requirements file.
+3. Install dependencies:- $ pip install -r requirements.txt (Windows users: installing the PIL dependency on x64 can
+ be a pain. You might find it easier to first activate the virtual environment and use:- $ easy_install PIL)
+    1. The /requirements/ folder contains requirements.txt files for different environments (local, production etc).
+    2. By default, requirements.txt points to local.txt, the requirements for local environments.
+    3. To install requirements for a different environment -
+        1. Use pip install on that specific file e.g. $ pip install -r production.txt
+        2. Modify requirements.txt to point to the desired requirements file.
 4. Point the app to the correct settings file by -
-    i. Using the runserver settings command line argument e.g. $ django-admin.py runserver --settings=picture_mapper.settings.local
-    ii. Creating a settings.py symlink to the correct settings file -
-        a. Windows cmd - mklink .\settings.py .\local.py
-        b. Linux Terminal - ln -s local.py settings.py
+    1. Using the runserver settings command line argument e.g. $ django-admin.py runserver --settings=picture_mapper.settings.local
+    2. Creating a settings.py symlink to the correct settings file -
+        1. Windows cmd - mklink .\settings.py .\local.py
+        2. Linux Terminal - ln -s local.py settings.py
 5. Run syncdb:- $ python manage.py syncdb
 6. Collect static files:- $ python manage.py collectstatic
 

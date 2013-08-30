@@ -9,6 +9,9 @@ class Picture(CreateTimeStampedModel):
     height = models.PositiveIntegerField()
     width = models.PositiveIntegerField()
     image = models.ImageField(upload_to="users/images/", height_field='height', width_field='width')
+    latitude = models.DecimalField(max_digits=9, decimal_places=6)
+    longitude = models.DecimalField(max_digits=9, decimal_places=6)
+
     objects = GetUniqueOrNoneManager()
 
     def __unicode__(self):
