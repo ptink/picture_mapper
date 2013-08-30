@@ -20,8 +20,7 @@ To Install Picture Mapper
 
 1. Clone the repo
 2. Create a virtual environment (http://www.virtualenv.org).
-3. Install dependencies:- $ pip install -r requirements.txt (Windows users: installing the PIL dependency on x64 can
- be a pain. You might find it easier to first activate the virtual environment and use:- $ easy_install PIL)
+3. Install dependencies:- $ pip install -r requirements.txt (Windows users: installing the PIL dependency on x64 can be a pain. You might find it easier to first activate the virtual environment and use:- $ easy_install PIL)
     1. The /requirements/ folder contains requirements.txt files for different environments (local, production etc).
     2. By default, requirements.txt points to local.txt, the requirements for local environments.
     3. To install requirements for a different environment -
