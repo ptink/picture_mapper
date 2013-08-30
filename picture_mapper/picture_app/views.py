@@ -1,11 +1,11 @@
 from django.core.urlresolvers import reverse_lazy
-from django.views.generic import CreateView
+from django.views.generic import CreateView, TemplateView
 from .forms import PictureForm
 from core.views import MessagesMixin
 from .models import Picture
 
 
-class UploadPicture(MessagesMixin, CreateView):
+class UploadPictureView(MessagesMixin, CreateView):
     model = Picture
     template_name = 'picture_app/forms/picture_form.html'
     form_class = PictureForm
@@ -26,3 +26,7 @@ class UploadPicture(MessagesMixin, CreateView):
     @property
     def form_valid_msg(self):
         return 'uploaded'
+
+
+class MapView(TemplateView):
+    template_name = 'easy_maps/map.html'

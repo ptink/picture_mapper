@@ -26,7 +26,7 @@ To Install Picture Mapper
     3. To install requirements for a different environment -
         1. Use pip install on that specific file e.g. $ pip install -r production.txt
         2. Modify requirements.txt to point to the desired requirements file.
-4. Point the app to the correct settings file by -
+4. Point the app to the correct settings file by either -
     1. Using the runserver settings command line argument e.g. $ django-admin.py runserver --settings=picture_mapper.settings.local
     2. Creating a settings.py symlink to the correct settings file -
         1. Windows cmd - mklink .\settings.py .\local.py
@@ -34,6 +34,31 @@ To Install Picture Mapper
 5. Run syncdb:- $ python manage.py syncdb
 6. Collect static files:- $ python manage.py collectstatic
 
+Project Dependencies
+===================
+
+django-south (http://south.readthedocs.org/en/latest/)
+  Used for database migrations
+
+PIL (http://www.pythonware.com/products/pil/)
+  Required by django ImageField, also useful for
+  extracting image meta-data
+
+django-easy-maps (https://github.com/kmike/django-easy-maps)
+  Useful app for embedding google maps into a page
+
+geopy (https://github.com/geopy/geopy)
+  Required by django-easy-maps, python geocoding toolbox
+
+django-registration (https://bitbucket.org/ubernostrum/django-registration/)
+  Simple drop-in registration app
+
+django-registration-bootstrap (https://pypi.python.org/pypi/django-registration-bootstrap)
+  Bootstrap versions of the django-registration templates. The site presentation uses
+  bootstrap for it's speed of creation/responsiveness so this saved some time.
+
+django-crispy-forms (https://github.com/maraujop/django-crispy-forms)
+  required by django-registration-bootstrap. Also very useful for configuring forms
 
 Notes
 ---------------
