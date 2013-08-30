@@ -1,1 +1,16 @@
-/*! project specific CSS goes here. */
+/* Django message divs */
+div.alert.success {
+  background-color: #EDF8E9;
+  border-style: solid;
+  border-color: #4DAF26;
+  border-width: thin thin thin thick;
+  color: #4DAF26;
+}
+
+div.alert.error {
+  background-color: #FCEBEB;
+  border-style: solid;
+  border-color: #C82828;
+  border-width: thin thin thin thick;
+  color: #C82828;;
+}

@@ -193,6 +193,7 @@ INSTALLED_APPS = (
 
     # Third party apps:
     'south',
+    'easy_maps',
     'registration',
     'registration_bootstrap',
     'crispy_forms',
@@ -204,6 +205,9 @@ INSTALLED_APPS = (
 ########## APP SPECIFIC CONFIGURATION
 # django-registration activation window, see: https://django-registration.readthedocs.org/en/v1.0/quickstart.html
 ACCOUNT_ACTIVATION_DAYS = 7  # One-week window
+
+# defalt location for centering django-easy-maps
+EASY_MAPS_CENTER = (51.378531, -2.359512)  # City of Bath, UK
 ########## END APP SPECIFIC CONFIGURATION
 
 ########## LOGGING CONFIGURATION

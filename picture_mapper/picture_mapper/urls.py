@@ -22,4 +22,10 @@ urlpatterns = patterns('',
     (r'^accounts/', include('registration.auth_urls')),
     url(r'^accounts/profile/', login_required(TemplateView.as_view(template_name='core/profile.html')), name="profile"),
 
+    # map url
+    url(r'^map/', login_required(TemplateView.as_view(template_name='easy_maps/map.html')), name="map"),
+
+    # picture app urls
+    (r'^pictures/', include('picture_app.urls')),
+
 )

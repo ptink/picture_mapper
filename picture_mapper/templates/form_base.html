@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %}Base Form Template{% endblock %}
+
+{% block content %}
+
+<div class="row">
+    <div class="span12">
+        <h1>{% block header %}Base Form Template{% endblock %}</h1>
+        <form class="form-horizontal" method="post" enctype="multipart/form-data" action="{% block form_url %}{% endblock %}">
+            {% csrf_token %}
+            {{ form|crispy }}
+            <div class="control-group">
+              <div class="controls">
+                <button type="submit" class="btn">{% block submit_text %}{% endblock %}</button>
+              </div>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
