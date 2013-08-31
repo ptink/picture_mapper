@@ -1,0 +1,7 @@
+{% extends 'easy_maps/map.html' %}
+
+{% block extra_js %}
+            $.get('{% url 'picture_data' %}', function(data) {
+                addMarkersFromJson(data, map);
+            });
+{% endblock %}

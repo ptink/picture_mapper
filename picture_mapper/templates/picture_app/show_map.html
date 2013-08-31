@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% load easy_maps_tags %}
+
+{% block title %}Global Picture Map{% endblock %}
+
+{% block content %}
+
+{% easy_map None 800 600 using 'picture_app/map_with_markers.html' %}
+
+{% endblock %}

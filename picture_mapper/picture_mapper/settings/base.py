@@ -194,6 +194,7 @@ INSTALLED_APPS = (
     # Third party apps:
     'south',
     'easy_maps',
+    'braces',
     'registration',
     'registration_bootstrap',
     'crispy_forms',

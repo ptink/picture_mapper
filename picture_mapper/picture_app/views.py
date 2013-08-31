@@ -1,11 +1,11 @@
 from django.core.urlresolvers import reverse_lazy
-from django.views.generic import CreateView, TemplateView
+from django.views.generic import CreateView, TemplateView, View
+from braces.views import FormMessagesMixin, JSONResponseMixin
 from .forms import PictureForm
-from core.views import MessagesMixin
 from .models import Picture
 
 
-class UploadPictureView(MessagesMixin, CreateView):
+class UploadPictureView(FormMessagesMixin, CreateView):
     model = Picture
     template_name = 'picture_app/forms/picture_form.html'
     form_class = PictureForm
@@ -23,10 +23,23 @@ class UploadPictureView(MessagesMixin, CreateView):
                 'request': self.request})
         return kwargs
 
-    @property
-    def form_valid_msg(self):
-        return 'uploaded'
+    def get_form_invalid_message(self):
+        return 'Failed to upload {0}!'.format(self.object.title)
+
+    def get_form_valid_message(self):
+        return '{0} uploaded!'.format(self.object.title)
 
 
-class MapView(TemplateView):
-    template_name = 'easy_maps/map.html'
+class PictureAjaxView(JSONResponseMixin, View):
+    content_type = 'application/json'
+
+    def get_queryset(self):
+        queryset = Picture.objects.all() \
+                          .values('title', 'image', 'author__username', 'description', 'latitude', 'longitude',)
+        return list(queryset)
+
+    def get(self, request, *args, **kwargs):
+        context_dict = {
+            'pictures': self.get_queryset(),
+        }
+        return self.render_json_response(context_dict)
