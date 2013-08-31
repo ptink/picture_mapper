@@ -1,0 +1,7 @@
+{% extends 'easy_maps/map.html' %}
+
+{% block extra_js %}
+            $.get('{% url 'picture_data' %}',{'user': '{{ request.user.id }}'}, function(data) {
+                map.getPictureDataFromJson(data);
+            });
+{% endblock %}

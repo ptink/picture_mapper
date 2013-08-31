@@ -1,9 +1,15 @@
 from django.core.urlresolvers import reverse_lazy
-from django.views.generic import CreateView, View
+from django.views.generic import CreateView, View, ListView
 from braces.views import FormMessagesMixin, JSONResponseMixin
 from .forms import PictureForm
 from .models import Picture
 
+
+class ProfileView(ListView):
+    queryset = Picture.objects.all()
+
+    def get_queryset(self):
+        return self.queryset.filter(author=self.request.user)
 
 class UploadPictureView(FormMessagesMixin, CreateView):
     model = Picture
@@ -37,7 +43,11 @@ class PictureAjaxView(JSONResponseMixin, View):
         queryset = Picture.objects.all() \
                           .values('title', 'image', 'author__username',
                                   'created', 'description', 'latitude', 'longitude',)
-        return list(queryset)
+        # If the request has "user" parameter we want to filter the queryset on the user id
+        if "user" in self.request.GET:
+            return list(queryset.filter(author=self.request.GET["user"]))
+        else:
+            return list(queryset)
 
     def get(self, request, *args, **kwargs):
         context_dict = {

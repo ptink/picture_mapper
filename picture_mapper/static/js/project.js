@@ -15,7 +15,7 @@ google.maps.Map.prototype.addMarkerFromJson = function(pictureObj) {
         '</div>' +
         '<h1 id="firstHeading" class="firstHeading">' + pictureObj.title + '</h1>' +
         '<div id="bodyContent">'+
-        '<img style="max-width: 400px; max-height: 300px;" src="/media/' + pictureObj.image + '" />' +
+        '<img style="max-width: 350px; max-height: 350px;" src="/media/' + pictureObj.image + '" />' +
         '<p>' + pictureObj.description + '</p>' +
         '<p>Uploaded by <b>' + pictureObj.author__username + '</b> ' +
         'on <b>' + new Date(pictureObj.created).toLocaleDateString() + '</b></p>' +

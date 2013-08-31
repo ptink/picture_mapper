@@ -10,3 +10,5 @@ class RedirectRegistrationView(RegistrationView):
 
     def get_success_url(self, request, user):
         return "/accounts/profile/"
+
+
