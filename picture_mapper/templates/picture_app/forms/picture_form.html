@@ -1,6 +1,25 @@
 {% extends "form_base.html" %}
-{% block title %}Upload Picture{% endblock %}
+{% load easy_maps_tags %}
 
+{% block title %}Upload Picture{% endblock %}
 {% block header %}Upload a Picture{% endblock %}
 {% block form_url %}{% url 'picture_form' %}{% endblock %}
 {% block submit_text %}Upload{% endblock %}
+
+{% block content %}
+<div class="alert alert-block">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    <h4>Hint:</h4>
+    <p>Right-click the map at the location you too the picture. The coordinates will be added for you!</p>
+</div>
+{{ block.super }}
+{% endblock %}
+
+{% block row_content %}
+{{ block.super }}
+<div class="span5 offset1">
+    <h1>Location Picker</h1>
+    {% easy_map None 450 350 5 using 'picture_app/location_picker.html' %}
+
+</div>
+{% endblock %}

@@ -1,0 +1,7 @@
+{% extends 'easy_maps/map.html' %}
+
+{% block extra_js %}
+            latField = $('#id_latitude');
+            lngField = $('#id_longitude');
+            map.locationPicker(latField, lngField);
+{% endblock %}

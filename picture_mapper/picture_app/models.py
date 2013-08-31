@@ -8,8 +8,8 @@ class Picture(CreateTimeStampedModel):
     height = models.PositiveIntegerField()
     width = models.PositiveIntegerField()
     image = models.ImageField(upload_to="users/images/", height_field='height', width_field='width')
-    latitude = models.DecimalField(max_digits=9, decimal_places=6)
-    longitude = models.DecimalField(max_digits=9, decimal_places=6)
+    latitude = models.DecimalField(max_digits=10, decimal_places=8)
+    longitude = models.DecimalField(max_digits=11, decimal_places=8)
 
     objects = GetUniqueOrNoneManager()
 

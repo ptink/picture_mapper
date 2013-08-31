@@ -24,10 +24,10 @@ class UploadPictureView(FormMessagesMixin, CreateView):
         return kwargs
 
     def get_form_invalid_message(self):
-        return 'Failed to upload {0}!'.format(self.object.title)
+        return 'Failed to save {0}'.format(self.model._meta.verbose_name)
 
     def get_form_valid_message(self):
-        return '{0} uploaded!'.format(self.object.title)
+        return '{0} uploaded'.format(self.object.title)
 
 
 class PictureAjaxView(JSONResponseMixin, View):

@@ -2,6 +2,6 @@
 
 {% block extra_js %}
             $.get('{% url 'picture_data' %}', function(data) {
-                addMarkersFromJson(data, map);
+                map.getPictureDataFromJson(data);
             });
 {% endblock %}
