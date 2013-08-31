@@ -9,6 +9,7 @@
  * @param pictureObj
  */
 google.maps.Map.prototype.addMarkerFromJson = function(pictureObj) {
+    var map = this
     var contentString = '<div id="content">' +
         '<div id="siteNotice">' +
         '</div>' +
@@ -29,10 +30,10 @@ google.maps.Map.prototype.addMarkerFromJson = function(pictureObj) {
     var marker = new google.maps.Marker({
         title: pictureObj.title,
         position: location,
-        map: this
+        map: map
     });
     google.maps.event.addListener(marker, 'click', function() {
-      infowindow.open(this, marker);
+      infowindow.open(map, marker);
     });
 }
 
