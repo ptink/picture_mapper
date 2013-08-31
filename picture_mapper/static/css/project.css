@@ -31,3 +31,8 @@ img.thumbnail-image {
     max-height: 150px;
     max-width: 210px;
 }
+
+/* Styling for the edit button in image gallery */
+a.btn.btn-edit {
+    display: block;
+}
