@@ -1,7 +1,5 @@
 from django import forms
 from decimal import Decimal
-from easy_maps.widgets import AddressWithMapWidget
-
 from .models import Picture
 from core.forms import AuthorModelForm
 

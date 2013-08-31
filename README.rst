@@ -23,7 +23,7 @@ To Install Picture Mapper
 3. Install dependencies:- ``$ pip install -r requirements.txt`` (Windows users: installing the PIL dependency on x64 can be a pain. You might find it easier to first activate the virtual environment and use:- ``$ easy_install PIL`` )
     1. The ``/requirements/`` folder contains requirements.txt files for different environments (local, production etc).
     2. By default, requirements.txt points to local.txt, the requirements for local environments
-    3. To install requirements for a different environment -
+    3. To install requirements for a different environment either -
         1. Use pip install on that specific file e.g. ``$ pip install -r production.txt``
         2. Modify requirements.txt to point to the desired requirements file
 4. Point the app to the correct settings file by either -

@@ -1,5 +1,5 @@
 from django.core.urlresolvers import reverse_lazy
-from django.views.generic import CreateView, TemplateView, View
+from django.views.generic import CreateView, View
 from braces.views import FormMessagesMixin, JSONResponseMixin
 from .forms import PictureForm
 from .models import Picture
@@ -35,7 +35,8 @@ class PictureAjaxView(JSONResponseMixin, View):
 
     def get_queryset(self):
         queryset = Picture.objects.all() \
-                          .values('title', 'image', 'author__username', 'description', 'latitude', 'longitude',)
+                          .values('title', 'image', 'author__username',
+                                  'created', 'description', 'latitude', 'longitude',)
         return list(queryset)
 
     def get(self, request, *args, **kwargs):

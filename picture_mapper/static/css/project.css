@@ -1,16 +1,21 @@
 /* Django message divs */
 div.alert.success {
-  background-color: #EDF8E9;
-  border-style: solid;
-  border-color: #4DAF26;
-  border-width: thin thin thin thick;
-  color: #4DAF26;
+    background-color: #EDF8E9;
+    border-style: solid;
+    border-color: #4DAF26;
+    border-width: thin thin thin thick;
+    color: #4DAF26;
 }
 
 div.alert.error {
-  background-color: #FCEBEB;
-  border-style: solid;
-  border-color: #C82828;
-  border-width: thin thin thin thick;
-  color: #C82828;;
+    background-color: #FCEBEB;
+    border-style: solid;
+    border-color: #C82828;
+    border-width: thin thin thin thick;
+    color: #C82828;
+}
+
+/* Fix to stop Bootstrap mangling the google map controls */
+.easy-map-googlemap img {
+    max-width: inherit;
 }

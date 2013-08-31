@@ -1,7 +1,8 @@
 from django.conf.urls import patterns, include, url
+from django.conf.urls.static import static
+from django.conf import settings
 from django.views.generic import TemplateView
 from django.contrib.auth.decorators import login_required
-
 from core.views import RedirectRegistrationView
 
 # Uncomment the next two lines to enable the admin:
@@ -25,4 +26,4 @@ urlpatterns = patterns('',
     # picture app urls
     (r'^pictures/', include('picture_app.urls')),
 
-)
+) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
