@@ -19,3 +19,15 @@ div.alert.error {
 .easy-map-googlemap img {
     max-width: inherit;
 }
+
+/* Add some spacing to the bottom of the .container div */
+#main {
+    padding-bottom: 50px;
+}
+
+/* Fixing image size for the profile thumbnail gallery */
+img.thumbnail-image {
+    min-height: 150px;
+    max-height: 150px;
+    max-width: 210px;
+}
