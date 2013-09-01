@@ -42,3 +42,15 @@ div.btn-ctrl {
 a.btn.btn-thumb {
     margin: 5px 0px;
 }
+
+/* Curved border and drop shadow for images */
+img.image-shadow {
+    border-radius: 10px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    box-shadow: 10px 10px 5px #888888;
+}
+
+p.home-page {
+    margin: 20px 0px;
+}

@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block title %}Picture Mapper{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="span12">
+        <h1>Welcome {% if request.user.is_authenticated %}back {{ user.username }}! {% else %}to Picture Mapper!{% endif %}</h1>
+    </div>
+    {% if request.user.is_authenticated %}
+    <div class="span12">
+        <a class="btn btn-large btn-info" href="{% url 'profile' %}">Visit Your Profile</a>
+        <a class="btn btn-large btn-info" href="{% url 'map' %}">View Live Map</a>
+        <h3>Recent Uploads</h3>
+        <ul class="thumbnails">
+            {% for picture in picture_list %}
+            <div id="lightbox_{{ picture.pk }}" class="lightbox hide fade"  tabindex="-1" role="dialog" aria-hidden="true">
+                <div class='lightbox-content'>
+                    <img src="{{ picture.image.url }}">
+                    <div class="lightbox-caption">
+                        <h4>{{ picture.title }} - Uploaded by {{ picture.author.username }}</h4>
+                        <p>{{ picture.description }}</p>
+                    </div>
+                </div>
+            </div>
+            <li>
+                <a data-toggle="lightbox" href="#lightbox_{{ picture.pk }}">
+                    <div class="thumbnail">
+                        <img class="thumbnail-image" src="{{ picture.image.url }}" alt="">
+                    </div>
+                </a>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% else %}
+    <div class="span6">
+        <img class="image-shadow" src="{{ STATIC_URL }}img/homepage-map.png"/>
+        <p class="home-page">
+            Picture Mapper allows you to upload your pictures from around the world and pin them on a global map!
+            Your pictures will then be viewable by other users, showing them exactly where you took your amazing photos!
+            Now is the perfect time to show off, click Register to signup or Login if you are already a member.
+        </p>
+        <a class="btn btn-large btn-primary" href="{% url 'auth_login' %}">Login</a>
+        <a class="btn btn-large btn-success" href="{% url 'registration_register' %}">Register</a>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

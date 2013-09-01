@@ -6,6 +6,7 @@ from .models import Picture
 
 
 class ProfileView(ListView):
+    template_name = 'profile.html'
     queryset = Picture.objects.all()
 
     def get_queryset(self):
@@ -14,7 +15,7 @@ class ProfileView(ListView):
 
 class PictureView(FormMessagesMixin):
     model = Picture
-    template_name = 'picture_app/forms/picture_form.html'
+    template_name = 'forms/picture_form.html'
     form_class = PictureForm
     success_url = reverse_lazy('profile')
 

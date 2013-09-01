@@ -10,6 +10,16 @@
         <h1>{% block header %}{{ user.username }}'s Profile{% endblock %}</h1>
     </div>
     <div class="span12">
+        <a data-toggle="collapse" data-target="#map-section" class="btn btn-info btn-large">Toggle Map</a>
+        <a class="btn btn-primary btn-large" href="{% url 'upload_picture' %}">Upload a Picture!</a>
+    </div>
+    <div id="map-section" class="span12 collapse out">
+        <div class="page-header">
+            <h3>Map View</h3>
+        </div>
+        {% easy_map None 940 600 3 using 'user_markers.html' %}
+    </div>
+    <div class="span12">
         <div class="page-header">
             <h3>Your Pictures</h3>
         </div>
@@ -39,15 +49,6 @@
             </li>
             {% endfor %}
         </ul>
-        <a class="btn btn-primary btn-large" href="{% url 'upload_picture' %}">Upload a Picture!</a>
-    </div>
-    <div class="span12">
-        <div class="page-header">
-            <h3>Map View</h3>
-        </div>
-    </div>
-    <div class="span12">
-        {% easy_map None 940 600 3 using 'picture_app/user_markers.html' %}
     </div>
 </div>
 {% endblock %}
