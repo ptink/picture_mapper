@@ -72,6 +72,19 @@ google.maps.Map.prototype.clearMarkers = function() {
  * @param lngField
  */
 google.maps.Map.prototype.locationPicker = function(latField, lngField) {
+    latInitial = latField.val();
+    lngInitial = lngField.val();
+    if (latInitial && lngInitial) {
+        // Initialise the marker array()
+        this.clearMarkers();
+        var initLocation = new google.maps.LatLng(latInitial, lngInitial)
+        var initMarker = new google.maps.Marker({
+            title: "Your picture!",
+            position: initLocation,
+            map: this
+        });
+        this.markers.push(initMarker);
+    }
     google.maps.event.addListener(this, "rightclick", function(event) {
         var lat = parseFloat(event.latLng.lat()).toFixed(8);
         var lng = parseFloat(event.latLng.lng()).toFixed(8);
@@ -86,4 +99,22 @@ google.maps.Map.prototype.locationPicker = function(latField, lngField) {
         });
         this.markers.push(marker);
     });
+}
+
+/**
+ * Takes the URL of the model delete function, and sends a POST
+ * request to delete after asking for confirmation.
+ * @param url
+ */
+function deleteModel(url) {
+    if (confirm("Are you sure you wish to delete?")) {
+        $.ajax(url, {
+            type: 'POST',
+            success: function() { location.reload() },
+            error: function() {
+                alert("Delete failed.");
+                location.reload();
+            }
+        });
+    }
 }

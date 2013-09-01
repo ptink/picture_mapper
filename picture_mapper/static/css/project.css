@@ -32,7 +32,13 @@ img.thumbnail-image {
     max-width: 210px;
 }
 
-/* Styling for the edit button in image gallery */
-a.btn.btn-edit {
+/* Styling for the buttons in image gallery */
+div.btn-ctrl {
+    max-width: 210px;
     display: block;
+    text-align: center;
+}
+
+a.btn.btn-thumb {
+    margin: 5px 0px;
 }

@@ -1,5 +1,5 @@
 from django.core.urlresolvers import reverse_lazy
-from django.views.generic import CreateView, View, ListView
+from django.views.generic import CreateView, View, ListView, UpdateView, DeleteView
 from braces.views import FormMessagesMixin, JSONResponseMixin
 from .forms import PictureForm
 from .models import Picture
@@ -9,9 +9,10 @@ class ProfileView(ListView):
     queryset = Picture.objects.all()
 
     def get_queryset(self):
-        return self.queryset.filter(author=self.request.user)
+        return self.request.user.picture_set.all()
 
-class UploadPictureView(FormMessagesMixin, CreateView):
+
+class PictureView(FormMessagesMixin):
     model = Picture
     template_name = 'picture_app/forms/picture_form.html'
     form_class = PictureForm
@@ -20,8 +21,11 @@ class UploadPictureView(FormMessagesMixin, CreateView):
     def get_form_kwargs(self):
         """
         Returns the keyword arguments for instanciating the form.
+        Need this to replace request kwarg (AuthorForm popped it)
         """
-        kwargs = {'initial': self.get_initial()}
+        kwargs = {
+            'initial': self.get_initial(),
+            'instance': self.object}
         if self.request.method in ('POST', 'PUT'):
             kwargs.update({
                 'data': self.request.POST,
@@ -29,11 +33,37 @@ class UploadPictureView(FormMessagesMixin, CreateView):
                 'request': self.request})
         return kwargs
 
+
+class UploadPictureView(PictureView, CreateView):
+
     def get_form_invalid_message(self):
         return 'Failed to save {0}'.format(self.model._meta.verbose_name)
 
     def get_form_valid_message(self):
         return '{0} uploaded'.format(self.object.title)
+
+
+class EditPictureView(PictureView, UpdateView):
+
+    def get_queryset(self):
+        # Make sure user can only edit their own pictures
+        return self.request.user.picture_set.all()
+
+    def get_form_invalid_message(self):
+        return 'Failed to save {0}'.format(self.model._meta.verbose_name)
+
+    def get_form_valid_message(self):
+        return '{0} updated'.format(self.object.title)
+
+
+class DeletePictureView(DeleteView):
+    template_name = None
+    success_url = reverse_lazy('profile')
+    model = Picture
+
+    def get_queryset(self):
+        # Make sure user can only delete their own pictures
+        return self.request.user.picture_set.all()
 
 
 class PictureAjaxView(JSONResponseMixin, View):

@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% load crispy_forms_tags %}
 {% load easy_maps_tags %}
+{% load staticfiles %}
 
 {% block title %}Profile{% endblock %}
 {% block content %}
@@ -29,13 +30,16 @@
                 <a data-toggle="lightbox" href="#lightbox_{{ picture.pk }}">
                     <div class="thumbnail">
                         <img class="thumbnail-image" src="{{ picture.image.url }}" alt="">
-                        <a class="btn btn-edit btn-inverse" href="#">Edit</a>
+                        <div class="btn-ctrl">
+                            <a class="btn btn-thumb btn-primary" href="{% url 'edit_picture' picture.pk %}">Edit</a>
+                            <a class="btn btn-thumb btn-danger" onclick="deleteModel('{% url 'delete_picture' picture.pk %}')">Delete</a>
+                        </div>
                     </div>
                 </a>
             </li>
             {% endfor %}
         </ul>
-        <a class="btn btn-primary btn-large" href="{% url 'picture_form' %}">Upload a Picture!</a>
+        <a class="btn btn-primary btn-large" href="{% url 'upload_picture' %}">Upload a Picture!</a>
     </div>
     <div class="span12">
         <div class="page-header">
@@ -46,4 +50,8 @@
         {% easy_map None 940 600 3 using 'picture_app/user_markers.html' %}
     </div>
 </div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/csrf.js' %}"></script>
 {% endblock %}
