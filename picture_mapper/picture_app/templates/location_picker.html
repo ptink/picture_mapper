@@ -1,7 +1,9 @@
 {% extends 'easy_maps/map.html' %}
 
 {% block extra_js %}
-            latField = $('#id_latitude');
-            lngField = $('#id_longitude');
+            var latField = $('#id_latitude');
+            var lngField = $('#id_longitude');
+            var imgField = $('#id_image');
             map.locationPicker(latField, lngField);
+            getLatLngFromExif(latField, lngField, imgField, map)
 {% endblock %}

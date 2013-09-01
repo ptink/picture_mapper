@@ -73,3 +73,12 @@ Notes
 
 The ``SECRET_KEY`` in ``/settings/base.py`` is for local and testing use ONLY. In a production setting you
 should override this (and any other sensitive settings information) using environment variables
+
+The image Exif-parsing feature (used to automatically get the lat/lng of the selected image) is pretty
+crude crude currently. It only works on mime-type image/jpeg and hasn't been thoroughly tested.
+
+The global map doesn't currently have different marker colours for each user, which can make tracking
+down pictures difficult. Unfortunately it appears to be non-trivial to change the colour of a marker
+(need to use separate icons for each) so put it on the back burner for now.
+
+There are currently no tests. This came down to a time issue, But I will be adding themas I go along.

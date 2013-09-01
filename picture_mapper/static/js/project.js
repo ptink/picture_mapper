@@ -71,9 +71,9 @@ google.maps.Map.prototype.clearMarkers = function() {
  * @param latField
  * @param lngField
  */
-google.maps.Map.prototype.locationPicker = function(latField, lngField) {
-    latInitial = latField.val();
-    lngInitial = lngField.val();
+google.maps.Map.prototype.locationPicker = function(latField, lngField, imgField) {
+    var latInitial = latField.val();
+    var lngInitial = lngField.val();
     if (latInitial && lngInitial) {
         // Initialise the marker array()
         this.clearMarkers();
@@ -117,4 +117,46 @@ function deleteModel(url) {
             }
         });
     }
+}
+
+/**
+ * Use exif library to try to extract latitude/longitude from image
+ * meta-data and populate the latitude/longitude fields automatically.
+ * Then adds a marker to the map and centers map on that location.
+ * Only works for JPEG's currently
+ */
+function getLatLngFromExif(latField, lngField, imgField, map) {
+    imgField.on("change", function(){
+        var exif;
+        var file = $(this).get(0).files[0];
+        var bin = new FileReader();
+        bin.onloadend = function() {
+            try {
+                exif = new JpegMeta.JpegFile(this.result, this.file.name);
+            } catch(e) {}  // JpegMeta error, probably wrong filetype
+            if (exif && exif.hasOwnProperty('gps')) {
+                if (exif['gps'].hasOwnProperty('latitude') && exif['gps'].hasOwnProperty('longitude')) {
+                    var lat = parseFloat(exif['gps']['latitude']).toFixed(8)
+                    var lng = parseFloat(exif['gps']['longitude']).toFixed(8)
+                    latField.val(lat);
+                    lngField.val(lng);
+                    map.clearMarkers();
+                    var location = new google.maps.LatLng(lat, lng)
+                    var marker = new google.maps.Marker({
+                        title: "Your picture!",
+                        position: location,
+                        map: map
+                    });
+                    map.markers.push(marker);
+                    map.setCenter(marker.getPosition())
+                    return;
+                }
+            }
+            latField.val('');
+            lngField.val('');
+            map.clearMarkers();
+        }
+        bin.file = file
+        bin.readAsBinaryString(file);
+    });
 }

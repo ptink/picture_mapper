@@ -1,5 +1,6 @@
 {% extends "form_base.html" %}
 {% load easy_maps_tags %}
+{% load staticfiles %}
 
 {% block title %}Upload Picture{% endblock %}
 {% block header %}Upload a Picture{% endblock %}
@@ -10,7 +11,8 @@
 <div class="alert alert-block">
     <button type="button" class="close" data-dismiss="alert">&times;</button>
     <h4>Hint:</h4>
-    <p>Right-click the map at the location you took the picture. The coordinates will be added for you!</p>
+    <p>If your image location details aren't automatically filled in, right-click the
+       map at the location you took the picture. The coordinates will be added for you!</p>
 </div>
 {{ block.super }}
 {% endblock %}
@@ -20,6 +22,9 @@
 <div class="span5 offset1">
     <h1>Location Picker</h1>
     {% easy_map None 450 350 5 using 'location_picker.html' %}
-
 </div>
 {% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/jpegmeta.js' %}"></script>
+{% endblock extra_js %}
