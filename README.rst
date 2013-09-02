@@ -20,7 +20,7 @@ To Install Picture Mapper
 
 1. Clone the repo (https://github.com/ptink/picture_mapper.git)
 2. Create a virtual environment (https://pypi.python.org/pypi/virtualenv)
-3. Install dependencies:- ``$ pip install -r requirements.txt`` (Windows users: installing the PIL dependency on x64 can be a pain. You might find it easier to first activate the virtual environment and use:- ``$ easy_install PIL`` )
+3. Install dependencies:- ``$ pip install -r requirements.txt`` (Windows users: installing the PIL dependency on x64 can be a pain. You might find it easier to first activate the virtual environment and use:- ``$ easy_install PIL`` ) If you get an IOerror when trying to upload a jpg, this could be the PIL library missing the decoder. see this stackoverflow question (http://stackoverflow.com/questions/12555831/decoder-jpeg-not-available-error-when-following-django-photo-app-tutorial)
     1. The ``/requirements/`` folder contains requirements.txt files for different environments (local, production etc).
     2. By default, requirements.txt points to local.txt, the requirements for local environments
     3. To install requirements for a different environment either -
