@@ -45,9 +45,9 @@ Project Dependencies
 django-south (http://south.readthedocs.org/en/latest/)
   Used for database migrations
 
-PIL (http://www.pythonware.com/products/pil/)
-  Required by django ImageField, also useful for
-  extracting image meta-data
+Pillow (https://github.com/python-imaging/Pillow)
+  Drop in replacement for PIL which is required by
+  Django's ImageField.
 
 django-easy-maps (https://github.com/kmike/django-easy-maps)
   Useful app for embedding google maps into a page
