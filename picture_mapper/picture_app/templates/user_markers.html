@@ -1,4 +1,10 @@
 {% extends 'easy_maps/map.html' %}
+{% load staticfiles %}
+
+{% block map_js %}
+    <script src="{% static 'js/googlemaps.js' %}"></script>
+    {{ block.super }}
+{% endblock %}
 
 {% block extra_js %}
             $.get('{% url 'picture_data' %}',{'user': '{{ request.user.id }}'}, function(data) {
