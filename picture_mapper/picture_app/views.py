@@ -13,7 +13,7 @@ class ProfileView(ListView):
         return self.request.user.picture_set.all()
 
 
-class PictureView(FormMessagesMixin):
+class PictureViewMixin(FormMessagesMixin):
     model = Picture
     template_name = 'forms/picture_form.html'
     form_class = PictureForm
@@ -35,7 +35,7 @@ class PictureView(FormMessagesMixin):
         return kwargs
 
 
-class UploadPictureView(PictureView, CreateView):
+class UploadPictureView(PictureViewMixin, CreateView):
 
     def get_form_invalid_message(self):
         return 'Failed to save {0}'.format(self.model._meta.verbose_name)
@@ -44,7 +44,7 @@ class UploadPictureView(PictureView, CreateView):
         return '{0} uploaded'.format(self.object.title)
 
 
-class EditPictureView(PictureView, UpdateView):
+class EditPictureView(PictureViewMixin, UpdateView):
 
     def get_queryset(self):
         # Make sure user can only edit their own pictures
@@ -81,6 +81,7 @@ class PictureAjaxView(JSONResponseMixin, View):
             return list(queryset)
 
     def get(self, request, *args, **kwargs):
+        # JSON serialize the queryset
         context_dict = {
             'pictures': self.get_queryset(),
         }

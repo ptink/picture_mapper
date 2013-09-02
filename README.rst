@@ -82,3 +82,8 @@ down pictures difficult. Unfortunately it appears to be non-trivial to change th
 (need to use separate icons for each) so put it on the back burner for now.
 
 There are currently no tests. This came down to a time issue, But I will be adding themas I go along.
+
+The geodjango module provides a lot of functionality for storing/querying geographical data, and would
+have been good to use to allow for more complex features to be added to the app later on, but time
+constraints and the requirement for setting up a 'postGIS' or 'spatialite' db made it unrealistic for this
+project.

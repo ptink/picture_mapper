@@ -7,6 +7,5 @@ class RedirectRegistrationView(RegistrationView):
     that it re-directs to the user's profile page after
     successful registration.
     """
-
     def get_success_url(self, request, user):
         return "/accounts/profile/"
